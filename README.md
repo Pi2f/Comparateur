@@ -1,7 +1,7 @@
 Franc/Gibassier
 
 # Comparateur
-# Comparateur de bières 
+# Comparateur de bières
 
 Ce comparateur a pour but de ravir les amateurs de bières.
 **Buts** :
@@ -22,3 +22,7 @@ Grands concepts :
 * Total point
 * Recherche
 * Classement
+
+Design patterns utiles
+- Décorateurs
+- Observer ?
