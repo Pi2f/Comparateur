@@ -24,6 +24,7 @@ Utilisateur :
   - Détermination des critères.
     - Style
     - Couleur
+    - Marque
     - Degré d'alcool
     - Prix
     - Avis des consommateurs
