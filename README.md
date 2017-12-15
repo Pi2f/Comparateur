@@ -30,8 +30,9 @@ Utilisateur :
   - Détermination de l'affichage.
     - Une barre latérale à gauche pour la sélection des critèbières
     - Un panneau à droite pour l'affichage des bières
-  - Détermination de l'approximation du résultat de la recherche (niveau de complexité───────)
+  - Détermination de l'approximation du résultat de la recherche (niveau de complexité)
     - Priorité sous forme d'arbre (- prioritaire vers le +)
+    
   ```
     Prix
     └─── Avis
@@ -39,7 +40,9 @@ Utilisateur :
     └────────────── Couleur
     └────────────────────── Degré
     └──────────────────────────── Style
-    ```
+    
+   ```
+
 
   Inconvénient scoring : Sur de petits volumes de données ca va sinon c'est la cata.
 
