@@ -8,7 +8,7 @@ Comparer les bières entre elles selon :
 
 Grands concepts :
 * Bière
-* Total point
+* Total point / Structure de données sous forme d'arbre
 * Recherche
 * Classement
 
