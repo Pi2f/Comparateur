@@ -9,7 +9,7 @@ Comparer les bières entre elles selon :
 
 Grands concepts :
 * Bière
-* Total point
+* Total point / Structure de données sous forme d'arbre
 * Recherche
 * Classement
 
@@ -25,6 +25,7 @@ Utilisateur :
   - Détermination des critères.
     - Style
     - Couleur
+    - Marque
     - Degré d'alcool
     - Prix
     - Avis des consommateurs
@@ -33,13 +34,17 @@ Utilisateur :
     - Un panneau à droite pour l'affichage des bières
   - Détermination de l'approximation du résultat de la recherche (niveau de complexité)
     - Priorité sous forme d'arbre (- prioritaire vers le +)
-    ```
+    
+  ```
     Prix
     └─── Avis
-    └─────── Couleur
-    └─────────────── Degré
-    └───────────────────── Style
-    ```
+    └─────── Marque
+    └────────────── Couleur
+    └────────────────────── Degré
+    └──────────────────────────── Style
+    
+   ```
+
 
   Inconvénient scoring : Sur de petits volumes de données ca va sinon c'est la cata.
 
@@ -52,9 +57,11 @@ Utilisateur :
   - Supprimer une bière
   - Modifier une bière
   - Lancer une recherche
+  - Noter une bière
 
 ###### Utilisateur
   - Lancer une recherche
+  - Noter une bière
   - Réserver une bière
 
 ### Contraintes
