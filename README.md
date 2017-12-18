@@ -3,6 +3,7 @@ Franc/Gibassier
 # Comparateur de bières
 
 Ce comparateur a pour but de ravir les amateurs de bières.
+
 **Buts** :
 Comparer les bières entre elles selon :
 
