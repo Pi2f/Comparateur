@@ -7,25 +7,42 @@ import java.util.Iterator;
 public class Main {
 
 	public static void main(String[] args) {
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 39ffb53a5ff2c162b6157f0f4ab7280b59690d7e
 //		Bières
 		ArrayList<Biere> tabBiere = new ArrayList<>();
 		Biere b = new Biere("A","Blonde",6,12);
 		Biere b1 = new Biere("B","Brune",3,15);
 		Biere b2 = new Biere("C","Rousse",8,6);
+<<<<<<< HEAD
 
 
+=======
+
+
+>>>>>>> 39ffb53a5ff2c162b6157f0f4ab7280b59690d7e
 //		Tableaux prenant en compte les différents critères
 		ArrayList<Prix> p = new ArrayList<>();
 		p.add(new Prix(b));
 		p.add(new Prix(b1));
 		p.add(new Prix(b2));
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 39ffb53a5ff2c162b6157f0f4ab7280b59690d7e
 		ArrayList<DegreAlcool> d = new ArrayList<>();
 		d.add(new DegreAlcool(b));
 		d.add(new DegreAlcool(b1));
 		d.add(new DegreAlcool(b2));
+<<<<<<< HEAD
 
+=======
+
+>>>>>>> 39ffb53a5ff2c162b6157f0f4ab7280b59690d7e
 		ArrayList<Couleur> c = new ArrayList<>();
 		c.add(new Couleur(b));
 		c.add(new Couleur(b1));
