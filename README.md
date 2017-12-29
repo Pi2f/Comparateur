@@ -34,7 +34,7 @@ Utilisateur :
     - Un panneau à droite pour l'affichage des bières
   - Détermination de l'approximation du résultat de la recherche (niveau de complexité)
     - Priorité sous forme d'arbre (- prioritaire vers le +)
-    
+
   ```
     Prix
     └─── Avis
@@ -42,7 +42,7 @@ Utilisateur :
     └────────────── Couleur
     └────────────────────── Degré
     └──────────────────────────── Style
-    
+
    ```
 
 
@@ -77,3 +77,21 @@ Utilisateur :
   - diagramme état
   - diagramme de classe
   - classes et leurs intéractions
+
+
+**Travailler sur les données, le traitement en sera faciliter.**
+
+** Critères trop strictes **
+
+Comparateurs :
+- Prix
+- Couleur à voir comment implémenter le comparateur
+- Marque
+- Degré + ou - légères (mettre des seuils)
+- Pays (regrouper par région, BENELUX, îles brittaniques, Pays de l'Est)
+- Style à définir les styles qui se ressemble le +
+
+But additionner, fusionner les comparateurs
+
+
+Sélection en singleton ?
