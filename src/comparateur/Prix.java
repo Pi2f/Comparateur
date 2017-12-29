@@ -1,16 +1,19 @@
 package comparateur;
 
 public class Prix extends Critere {
-
-	private int prix;
 	
-	public Prix(Biere b, int p) {
+	public Prix(Biere b) {
 		super(b);
-		prix = p;
+	}
+
+	@Override
+	public int compareTo(Critere arg0) {
+		return (int) (this.getB().getPrix() - ((Prix) arg0).getB().getPrix());
 	}
 	
-	@Override
-	public void requete() {
-		
+	public boolean fourchette(double min, double max) {
+		double prix = getB().getPrix();
+		return prix >= min && prix <= max;
 	}
+
 }
