@@ -84,14 +84,22 @@ Utilisateur :
 ** Critères trop strictes **
 
 Comparateurs :
-- Prix
+- Prix (+-25cts)
 - Couleur à voir comment implémenter le comparateur
 - Marque
-- Degré + ou - légères (mettre des seuils)
+- Degré + ou - légères (mettre des seuils + ou - 1)
 - Pays (regrouper par région, BENELUX, îles brittaniques, Pays de l'Est)
 - Style à définir les styles qui se ressemble le +
+- goût douce, amère, acide, liquoreuse, saugrenues
+- bière de saison
+- Trappiste
+- d'abbaye
+- Fermière, artisanale, industrielle, traditionnelles
+- Régions
+- Type de fermentation (basse, haute, spontanée, mixte)
 
 But additionner, fusionner les comparateurs
 
+Sélection en singleton ? Surement
 
-Sélection en singleton ?
+Utiliser la réflexivité pour le tri.

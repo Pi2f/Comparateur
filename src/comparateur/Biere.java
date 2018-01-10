@@ -13,6 +13,10 @@ public class Biere extends Selection {
 		prix = p;
 	}
 	
+	public Biere getB() {
+		return this;
+	}
+	
 	public String getCouleur() {
 		return couleur;
 	}

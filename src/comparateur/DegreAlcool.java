@@ -11,9 +11,13 @@ public class DegreAlcool extends Critere {
 		return (int) (getB().getDegre() - arg0.getB().getDegre());
 	}
 	
-	public boolean fourchette(double min, double max) {
+	public void fourchette(Selection s, double min, double max) {
 		double deg = getB().getDegre();
-		return deg >= min && deg <= max;
+		if(deg >= min && deg <= max) {
+			s.ajouter(getB());
+		} else {
+			s.supprimer(getB());
+		}
 	}
 
 }
