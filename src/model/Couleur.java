@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 public class Couleur extends Critere {
 	public Couleur(Biere b) {
@@ -6,12 +6,12 @@ public class Couleur extends Critere {
 	}
 	
 	
-//	Ordre alphabÃ©tique
+//	Ordre alphabétique
 	@Override
 	public int compareTo(Critere arg0) {
 		int i = 0;
-		while(getB().getCouleur().codePointAt(i) 
-				==  arg0.getB().getCouleur().codePointAt(i)) {
+		while(i < getB().getCouleur().length() -1 && 
+				getB().getCouleur().codePointAt(i) ==  arg0.getB().getCouleur().codePointAt(i)) {
 			i++;
 		}
 		return getB().getCouleur().codePointAt(i) - arg0.getB().getCouleur().codePointAt(i);

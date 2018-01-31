@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 public class Style extends Critere {
 
@@ -6,12 +6,12 @@ public class Style extends Critere {
 		super(b);
 	}
 
-//	Ordre alphabÃ©tique
+//	Ordre alphabétique
 	@Override
 	public int compareTo(Critere arg0) {
 		int i = 0;
-		while(getB().getStyle().codePointAt(i) 
-				==  arg0.getB().getStyle().codePointAt(i)) {
+		while(i < getB().getStyle().length()-1 && 
+				getB().getStyle().codePointAt(i) ==  arg0.getB().getStyle().codePointAt(i)) {
 			i++;
 		}
 		return getB().getStyle().codePointAt(i) - arg0.getB().getStyle().codePointAt(i);

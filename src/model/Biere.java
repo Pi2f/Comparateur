@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 public class Biere extends Selection {
 	double prix;

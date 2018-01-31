@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 public class DegreAlcool extends Critere {
 	

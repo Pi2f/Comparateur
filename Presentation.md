@@ -38,9 +38,23 @@ Nous allons nous baser sur ces critères :
 - Avis, Popularité,
 - Prix.
 
+Notre comparateur proposera différents modèles de critères :
+
+## Critères strictes :
+- Couleur -> Liste déroulante
+- Type de fermentation ->
+- Pays & Marque -> Barre de recherche (Autocompletion) ou liste déroulante
+- options supplémentaires (trappiste, abbaye, de noël).
+
+## Critères souples :
+
+- Prix et degré d'alcool -> fourchette slider
+- Douceur et amertume -> sur 5 étoile
+- Avis -> sur 5 étoile
+
 <p align="justify">
 
-Si nous avons suffisamment de temps il sera possible de situer les bars sur une carte.Nous aimerions aussi concevoir une gestion de compte utilisateur pour que les utilisateurs puissent commenter leur notation et pour faciliter la réservation de plusieurs produits simultanément. Pour atteindre nos objectifs et ne pas s’éparpiller sur un trop grand volume de données, nous nous restreindrons sur les bières fabriquées en France et les bars localisés à Marseille.
+Si nous avons suffisamment de temps il sera possible de situer les bars sur une carte. Nous aimerions aussi concevoir une gestion de compte utilisateur pour que les utilisateurs puissent commenter leur notation et pour faciliter la réservation de plusieurs produits simultanément. Pour atteindre nos objectifs et ne pas s’éparpiller sur un trop grand volume de données, nous nous restreindrons sur les bières fabriquées en France et les bars localisés à Marseille.
 
 </p>
 

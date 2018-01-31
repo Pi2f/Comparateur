@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -55,7 +55,7 @@ public class Selection {
 	}
 	
 	public void fourchette(double min, double max, String meth) throws NoSuchMethodException, SecurityException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
-		Method m = comparateur.Biere.class.getDeclaredMethod(meth, null);
+		Method m = model.Biere.class.getDeclaredMethod(meth, null);
 		
 		ArrayList<Biere> s1 = new ArrayList<>();
 		for (Biere b : selection) {
@@ -80,7 +80,7 @@ public class Selection {
 		s = "";
 		for (Iterator<?> iterator = selection.iterator(); iterator.hasNext();) {
 			Biere bi = (Biere) iterator.next();
-			s += bi.getDegre() + "\t" + bi.getCouleur() + "\t" + bi.getStyle() + "\t" + bi.getPrix() + "\n";
+			s += bi.getStyle() + "\t" + bi.getCouleur() + "\t" + bi.getDegre() + "\t" + bi.getPrix() + "\n";
 		}
 		return s;
 	}

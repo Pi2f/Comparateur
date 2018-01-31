@@ -1,4 +1,4 @@
-package comparateur;
+package model;
 
 public abstract class Critere extends Selection implements Comparable<Critere>  {
 	protected Biere b;

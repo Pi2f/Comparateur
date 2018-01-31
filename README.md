@@ -100,6 +100,6 @@ Comparateurs :
 
 But additionner, fusionner les comparateurs
 
-Sélection en singleton ? Surement
+Sélection en singleton ? Sûrement
 
 Utiliser la réflexivité pour le tri.
