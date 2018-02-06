@@ -24,6 +24,7 @@ public class Fenetre extends JFrame {
 		
 		Formulaire fo = new Formulaire();
 		fo.addListener(content, cl, listContent[1]);
+		fo.addListener2(content, cl, listContent[0]);
 		
 		//On définit le layout
 	    content.setLayout(cl);

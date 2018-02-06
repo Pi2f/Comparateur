@@ -1,13 +1,12 @@
 package model;
 
 public class Prix extends Critere {
-	
-	public Prix(Biere b) {
+	public Prix(Selection b) {
 		super(b);
 	}
-
+	
 	@Override
-	public int compareTo(Critere arg0) {
-		return (int) (this.getB().getPrix() - ((Prix) arg0).getB().getPrix());
+	public void requete() {
+		b.setS(b.getS() + "Prix >= ? && Prix <= ?");
 	}
 }

@@ -1,52 +1,18 @@
 package model;
 
-public class Biere extends Selection {
-	double prix;
-	double degre;
-	String couleur;
-	String style;
+public class Biere {
 	
-	public Biere(String s, String c, double d, double p) {
-		style = s;
-		couleur = c;
-		degre = d;
-		prix = p;
+	String s = "SELECT * FROM beer WHERE ";
+	
+	public String getS() {
+		return s;
 	}
 	
-	public Biere getB() {
-		return this;
+	public void setS(String s) {
+		this.s = s;
 	}
 	
-	public String getCouleur() {
-		return couleur;
+	public void addrequete() {
+		setS(getS() + " && ");
 	}
-	
-	public void setCouleur(String couleur) {
-		this.couleur = couleur;
-	}
-	
-	public double getPrix() {
-		return prix;
-	}
-	
-	public void setPrix(double prix) {
-		this.prix = prix;
-	}
-	
-	public double getDegre() {
-		return degre;
-	}
-	
-	public void setDegre(double degre) {
-		this.degre = degre;
-	}
-	
-	public String getStyle() {
-		return style;
-	}
-	
-	public void setStyle(String style) {
-		this.style = style;
-	}
-
 }

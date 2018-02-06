@@ -10,6 +10,9 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.Scanner;
 
+import javax.swing.ComboBoxModel;
+import javax.swing.event.ListDataListener;
+
 public class ConnexionBDD {
 	Connection conn;
 	
@@ -26,6 +29,11 @@ public class ConnexionBDD {
 			e.printStackTrace();
 		}
 	}
+	
+	public Connection getConn() {
+		return conn;
+	}
+	
 	public void ajouter() throws SQLException {
             PreparedStatement statement = conn.prepareStatement(
             		"INSERT INTO beer (nom,marque,pays,prix,degre,couleur,typeferm) "
@@ -66,21 +74,115 @@ public class ConnexionBDD {
             statement.close();
 		}
 	
-		public ArrayList<Biere> lister() throws SQLException {
-			ArrayList<Biere> list = new ArrayList();
-			Statement s = conn.createStatement();
-			ResultSet res = s.executeQuery("SELECT * FROM beer");
-			ResultSetMetaData resm = res.getMetaData();
+		public void lister(String s,double a, double b, double c, double d,
+				String e, String f, String g, String h) throws SQLException {
+			PreparedStatement st = conn.prepareStatement(s);
+			st.setDouble(1, a);
+			st.setDouble(2, b);
+			st.setDouble(3, c);
+			st.setDouble(4, d);
+			st.setString(5, e);
+			st.setString(6, f);
+			st.setString(7, g);
+			st.setString(8, h);
+			
+			System.out.println(st);
+			
+			
+			ResultSet res = st.executeQuery();
 			
 			while(res.next()){
-				list.add(new Biere(
-						res.getString(2),
-		        		res.getString(7), 
-		        		res.getDouble(6), 
-		        		res.getDouble(5)));
+				System.out.println(
+						res.getString(2) + "\t" +
+		        		res.getString(7) + "\t" +
+		        		res.getDouble(6) + "\t" +
+		        		res.getDouble(5));
 		    }
+			st.close();
+		}
+		
+		public Double getPrixMax() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT MAX(Prix) FROM beer");
+            s.close();
+            res.next();
+            return res.getDouble(1);
+		}
+		
+		public Double getPrixMin() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT MIN(Prix) FROM beer");
+            s.close();
+            res.next();
+            return res.getDouble(1);
+		}
+		
+		public Double getDegreMax() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT MAX(Degre) FROM beer");
+            s.close();
+            res.next();
+            return res.getDouble(1);
+		}
+		
+		public Double getDegreMin() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT MIN(Degre) FROM beer");
+            s.close();
+            res.next();
+            return res.getDouble(1);
+		}
+		
+		public String[] getPays() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT COUNT(DISTINCT(Pays)) FROM beer");
+			res.next();
+			String[] ret = new String[res.getInt(1)+1];
+			
+			res = s.executeQuery("SELECT DISTINCT(Pays) FROM beer");
+			
+			ret[0]="";
+			int i = 1;
+			while(res.next()) {
+				ret[i] = res.getString(1);
+				i++;
+			}
 			s.close();
-			return list;
+			return ret;
+		}
+		
+		public String[] getMarque() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT COUNT(DISTINCT(Marque)) FROM beer");
+			res.next();
+			String[] ret = new String[res.getInt(1)+1];
+			
+			res = s.executeQuery("SELECT DISTINCT(Marque) FROM beer");
+			ret[0]="";
+			int i = 1;
+			while(res.next()) {
+				ret[i] = res.getString(1);
+				i++;
+			}
+			s.close();
+			return ret;
+		}
+		
+		public String[] getCouleur() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT COUNT(DISTINCT(Couleur)) FROM beer");
+			res.next();
+			String[] ret = new String[res.getInt(1)+1];
+			
+			res = s.executeQuery("SELECT DISTINCT(Couleur) FROM beer");
+			ret[0]="";
+			int i = 1;
+			while(res.next()) {
+				ret[i] = res.getString(1);
+				i++;
+			}
+			s.close();
+			return ret;
 		}
 		
 		public void terminer() throws SQLException {

@@ -1,14 +1,11 @@
 package model;
 
-public abstract class Critere extends Selection implements Comparable<Critere>  {
-	protected Biere b;
+public abstract class Critere {
+	protected Selection b;
 	
-	public Critere(Biere b) {
-		super();
+	public Critere(Selection b) {
 		this.b = b;
 	}
 	
-	public Biere getB() {
-		return b;
-	}
+	public abstract void requete();
 }

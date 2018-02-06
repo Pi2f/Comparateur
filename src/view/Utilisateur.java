@@ -2,6 +2,11 @@ package view;
 
 import javax.swing.JPanel;
 
-public class Utilisateur extends JPanel {
+import model.ConnexionBDD;
 
+public class Utilisateur extends JPanel {
+	ConnexionBDD c;
+	public Utilisateur() {
+		
+	}
 }
