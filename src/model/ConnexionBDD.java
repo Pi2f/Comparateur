@@ -34,35 +34,20 @@ public class ConnexionBDD {
 		return conn;
 	}
 	
-	public void ajouter() throws SQLException {
+	public void ajouter(String nom, String marque, String pays,
+			String prix, String degre, String couleur, String typeferm) throws SQLException {
             PreparedStatement statement = conn.prepareStatement(
             		"INSERT INTO beer (nom,marque,pays,prix,degre,couleur,typeferm) "
             		+ "VALUES(?,?,?,?,?,?,?)");
-            System.out.println("Connection has been made");
-            
-            Scanner keyBoardScanner = new Scanner(System.in);
-              
-            System.out.println("Nom :");
-            statement.setString(1,keyBoardScanner.nextLine());
-            System.out.println("Marque :");
-            statement.setString(2,keyBoardScanner.nextLine());
-            System.out.println("Pays :");
-            statement.setString(3,keyBoardScanner.nextLine());
-              
-            System.out.println("Prix :");
-            statement.setFloat(4,Float.parseFloat(keyBoardScanner.nextLine()));
-            System.out.println("Degré :");
-            statement.setFloat(5,Float.parseFloat(keyBoardScanner.nextLine()));
-            
-            System.out.println("Couleur :");
-            statement.setString(6,keyBoardScanner.nextLine());
-            System.out.println("TypeFerm :");
-            statement.setString(7,keyBoardScanner.nextLine());
-              
-            System.out.println("Inserting data into beertable ...");
+            statement.setString(1,nom);
+            statement.setString(2,marque);
+            statement.setString(3,pays);             
+            statement.setDouble(4,Double.parseDouble(prix));
+            statement.setDouble(5,Double.parseDouble(degre));
+            statement.setString(6,couleur);
+            statement.setString(7,typeferm);
               
             statement.executeUpdate();
-            keyBoardScanner.close();
             statement.close();
 		}
 	
@@ -74,31 +59,51 @@ public class ConnexionBDD {
             statement.close();
 		}
 	
-		public void lister(String s,double a, double b, double c, double d,
-				String e, String f, String g, String h) throws SQLException {
+		public ArrayList<Biere> lister(String s, String e, String f,
+				String g, String h, String j, Score sc) throws SQLException {
 			PreparedStatement st = conn.prepareStatement(s);
-			st.setDouble(1, a);
-			st.setDouble(2, b);
-			st.setDouble(3, c);
-			st.setDouble(4, d);
-			st.setString(5, e);
-			st.setString(6, f);
-			st.setString(7, g);
-			st.setString(8, h);
 			
-			System.out.println(st);
-			
+			int i = 0;
+				
+			if(e != "") {
+				i++;
+				st.setString(i, e);
+			}
+			if(f != "") {
+				i++;
+				st.setString(i, f);
+			}
+			if(g != "") {
+				i++;
+				st.setString(i, g);
+			}
+			if(h != "") {
+				i++;
+				st.setString(i, h);
+			}
 			
 			ResultSet res = st.executeQuery();
 			
+			ArrayList<Biere> lb = new ArrayList();
 			while(res.next()){
-				System.out.println(
-						res.getString(2) + "\t" +
-		        		res.getString(7) + "\t" +
-		        		res.getDouble(6) + "\t" +
-		        		res.getDouble(5));
+				Biere bi = new Biere(
+						res.getDouble(5),
+		        		res.getDouble(6),
+		        		res.getString(2),
+		        		res.getString(3),
+		        		res.getString(4),
+		        		res.getString(7),
+		        		res.getString(8));
+				
+				
+				bi.setScore(sc.calculScore(bi));
+				
+				lb.add(bi);
 		    }
+			
+			lb.sort(null);
 			st.close();
+			return lb;
 		}
 		
 		public Double getPrixMax() throws SQLException {
@@ -175,6 +180,23 @@ public class ConnexionBDD {
 			String[] ret = new String[res.getInt(1)+1];
 			
 			res = s.executeQuery("SELECT DISTINCT(Couleur) FROM beer");
+			ret[0]="";
+			int i = 1;
+			while(res.next()) {
+				ret[i] = res.getString(1);
+				i++;
+			}
+			s.close();
+			return ret;
+		}
+		
+		public String[] getTypeFerm() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT COUNT(DISTINCT(TypeFerm)) FROM beer");
+			res.next();
+			String[] ret = new String[res.getInt(1)+1];
+			
+			res = s.executeQuery("SELECT DISTINCT(TypeFerm) FROM beer");
 			ret[0]="";
 			int i = 1;
 			while(res.next()) {

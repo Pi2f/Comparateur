@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Selection {
-		String s = "SELECT * FROM beer WHERE ";
+		String s = "SELECT * FROM beer WHERE 1=1";
 		
 		public String getS() {
 			return s;
@@ -22,7 +22,7 @@ public class Selection {
 		}
 		
 		public void clearS() {
-			s = "SELECT * FROM beer WHERE ";
+			s = "SELECT * FROM beer WHERE 1=1";
 		}
 
 	
