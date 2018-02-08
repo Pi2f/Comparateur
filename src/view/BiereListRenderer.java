@@ -23,6 +23,8 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 	private JLabel couleur;
 	private JLabel degre;
 	private JLabel prix;
+	private JLabel douceur;
+	private JLabel amertume;
 	private JLabel score;
 	
 	public BiereListRenderer() {
@@ -36,6 +38,8 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		couleur = new JLabel();
 		degre = new JLabel();
 		prix = new JLabel();
+		douceur = new JLabel();
+		amertume = new JLabel();
 		score = new JLabel();
 		
 		nom.setPreferredSize(new Dimension(200, 20));
@@ -45,6 +49,8 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		couleur.setPreferredSize(new Dimension(60,20));
 		degre.setPreferredSize(new Dimension(30,20));
 		prix.setPreferredSize(new Dimension(30,20));
+		douceur.setPreferredSize(new Dimension(30,20));
+		amertume.setPreferredSize(new Dimension(30,20));
 		score.setPreferredSize(new Dimension(30, 20));
 		
 		add(nom);
@@ -54,6 +60,8 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		add(couleur);
 		add(degre);
 		add(prix);
+		add(douceur);
+		add(amertume);
 		add(score);
 		
 	}
@@ -76,9 +84,9 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		couleur.setText(arg1.getCouleur());
 		degre.setText(String.valueOf(arg1.getDegre()));
 		prix.setText(String.valueOf(arg1.getPrix()));
+		douceur.setText(String.valueOf(arg1.getAmertume()));
+		amertume.setText(String.valueOf(arg1.getDouceur()));
 		score.setText(String.valueOf(arg1.getScore()));
-		
-		
 		
 		setOpaque(true);
 		return this;

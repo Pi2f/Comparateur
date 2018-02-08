@@ -44,6 +44,10 @@ public class Administrateur extends JPanel {
 		JTextField jtf6 = new JTextField();
 		JLabel ljtf7 = new JLabel("Type de fermentation");
 		JTextField jtf7 = new JTextField();
+		JLabel ljtf8 = new JLabel("Douceur");
+		JTextField jtf8 = new JTextField();
+		JLabel ljtf9 = new JLabel("Amertume");
+		JTextField jtf9 = new JTextField();
 		
 		jb1.addActionListener(new ActionListener() {
 			
@@ -52,7 +56,8 @@ public class Administrateur extends JPanel {
 				ConnexionBDD c = new ConnexionBDD();
 				try {
 					c.ajouter(jtf1.getText(), jtf2.getText(), jtf5.getText(),
-							jtf4.getText(), jtf3.getText(), jtf6.getText(), jtf7.getText());
+							jtf4.getText(), jtf3.getText(), jtf6.getText(), jtf7.getText(),
+							jtf8.getText(), jtf9.getText());
 				} catch (SQLException e) {
 					e.printStackTrace();
 				}
@@ -63,6 +68,13 @@ public class Administrateur extends JPanel {
 				jtf5.setText("");
 				jtf6.setText("");
 				jtf7.setText("");
+				jtf8.setText("");
+				jtf9.setText("");
+				try {
+					c.terminer();
+				} catch (SQLException e) {				
+					e.printStackTrace();
+				}
 				
 			}
 		});
@@ -87,6 +99,12 @@ public class Administrateur extends JPanel {
 		
 		add(ljtf7);
 		add(jtf7);
+		
+		add(ljtf8);
+		add(jtf8);
+		
+		add(ljtf9);
+		add(jtf9);
 		
 		add(jb1);
 //		add(jb2);

@@ -1,70 +1,89 @@
 package model;
 
+import javax.swing.JSlider;
+
 import com.visutools.nav.bislider.BiSlider;
 
 public class Score {
 	private int score;
 	private double prixMin, prixMax;
 	private double prixColoredMax, prixColoredMin;
+	private double degreMin, degreMax;
+	private double degreColoredMin, degreColoredMax;
 	
-	public Score(BiSlider b1) {
-		prixMin = b1.getMinimumValue();
-		prixMax = b1.getMaximumValue();
-		prixColoredMax = b1.getMaximumColoredValue();
-		prixColoredMin = b1.getMinimumValue();
+	public Score(BiSlider b1, BiSlider b2, JSlider js1, JSlider js2) {
+		prixMin = roundAvoid(b1.getMinimumValue(),2);
+		prixMax = roundAvoid(b1.getMaximumValue(),2);
+		prixColoredMax = roundAvoid(b1.getMaximumColoredValue(),2);
+		prixColoredMin = roundAvoid(b1.getMinimumColoredValue(),2);
+		
+		degreMin = roundAvoid(b2.getMinimumValue(),2);
+		degreMax = roundAvoid(b2.getMaximumValue(),2);
+		degreColoredMax = roundAvoid(b2.getMaximumColoredValue(),2);
+		degreColoredMin = roundAvoid(b2.getMinimumColoredValue(),2);
 	}
 	
-	public int calculScore(Biere b) {
-		
+	public int calculScore(Biere b) {	
 		int valeur;
 		double cond;
-		double moy = (prixColoredMax - prixColoredMin)/2;
+		double moy = roundAvoid((prixColoredMax + prixColoredMin)/2,2);
 		double fourchette = prixColoredMax - prixColoredMin;
-		double intervalle = (prixColoredMax - prixColoredMin)/10;
-		double intervalleTotal = (prixMax - prixMin)/10;
+		double intervalle = prixColoredMax - prixColoredMin;
+		double intervalleTotal = roundAvoid((prixMax - prixMin)/10,2);
 		
 		score = 0;
 		
-		if(fourchette >= 5*intervalleTotal) {
-			cond = Math.abs(b.getPrix() - moy);
-			valeur = 20;
-			while(cond > 0) {
-				cond = cond - intervalle;
-				valeur -= 4;
-			}
-			score += valeur;
-		} else {
-			if(b.getPrix() < prixColoredMin) {
-				valeur = 10;
-				cond = Math.abs(b.getPrix() - prixColoredMin);
-				while(cond > 0) {
-					cond = cond - intervalle;
-					valeur -= 2;
-				}
-				score += valeur;
-			}
-			
-			if(b.getPrix() > prixColoredMax) {
-				valeur = 10;
-				cond = Math.abs(b.getPrix() - prixColoredMax);
-				while(cond > 0) {
-					cond = cond - intervalle;
-					valeur -= 2;
-				}
-				score += valeur;
-			}
-			
-			if(b.getPrix() >= prixColoredMin && b.getPrix() <= prixColoredMax) {
-				valeur = 30;
-				cond = Math.abs(b.getPrix() - moy);
-				while(cond > 0) {
-					cond = cond - intervalle;
-					valeur -= 5;
-				}
-				score += valeur;
-			}
+		int i = 0;
+		while(fourchette > 0) {
+			fourchette = fourchette - intervalleTotal;
+			i++;
 		}
 		
+		i--;
+		intervalle = intervalle/i;
+		valeur = 110 - i*10;
+		int enleve = 11-i;
+		cond = Math.abs(b.getPrix() - moy);
+		while(cond > 0) {
+			cond = cond - intervalle;
+			valeur -= enleve;
+		}
+		score += valeur;
+		
 		return score;
+	}
+	
+	public int calculScore2(Biere b) {	
+		int valeur;
+		double cond;
+		double moy = roundAvoid((degreColoredMax + degreColoredMin)/2,2);
+		double fourchette = degreColoredMax - degreColoredMin;
+		double intervalle = degreColoredMax - degreColoredMin;
+		double intervalleTotal = roundAvoid((degreMax - degreMin)/10,2);
+		
+		score = 0;
+		
+		int i = 0;
+		while(fourchette > 0) {
+			fourchette = fourchette - intervalleTotal;
+			i++;
+		}
+		
+		i--;
+		intervalle = intervalle/i;
+		valeur = 110 - i*10;
+		int enleve = 11-i;
+		cond = Math.abs(b.getDegre() - moy);
+		while(cond > 0) {
+			cond = cond - intervalle;
+			valeur -= enleve;
+		}
+		score += valeur;
+		return score;
+	}
+	
+	public static double roundAvoid(double value, int places) {
+	    double scale = Math.pow(10, places);
+	    return Math.round(value * scale) / scale;
 	}
 }

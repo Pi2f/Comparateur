@@ -14,6 +14,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 
+import controller.AdminController;
+import controller.UtilisateurController;
 import model.Biere;
 import model.ConnexionBDD;
 import model.Couleur;
@@ -32,89 +34,25 @@ public class Fenetre extends JFrame {
 	  String[] listContent = {"CARD_1", "CARD_2", "CARD_3"};
 	  JButton admin;
 	  JButton rech;
-	  Selection b;
-	  Score sc;
-	  ConnexionBDD c = new ConnexionBDD();
 	
 	public Fenetre(String title, int left, int top, int width, int height){
 		setTitle(title);
 		setBounds(top,left,width,height);
 		setExtendedState(Frame.MAXIMIZED_BOTH);
 		
-		Formulaire fo = new Formulaire(c);
+		Formulaire fo = new Formulaire();
 		fo.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
 		rech = new JButton("Recherche");
 		admin = new JButton("Administrateur");
 		fo.add(rech);
 		fo.add(admin);
 		
-		admin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				cl.show(content, listContent[1]);
-			}
-		});
-			
-		rech.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent arg0) {
-				b = new Selection();
-				Critere ct;
-				
-				if(fo.getJc1().getSelectedIndex() != 0) {
-					b.addrequete();
-					ct = new Pays(b);
-					ct.requete();
-				}
-				
-				if(fo.getJc2().getSelectedIndex() != 0) {
-					b.addrequete();
-					ct = new Marque(b);
-					ct.requete();
-				}
-				
-				if(fo.getJc3().getSelectedIndex() != 0) {
-					b.addrequete();
-					ct = new Couleur(b);
-					ct.requete();
-				}
-				
-				if(fo.getJc4().getSelectedIndex() != 0) {
-					b.addrequete();
-					ct = new TyperFerm(b);
-					ct.requete();
-				}
-				
-				if(!fo.getJtf().getText().equalsIgnoreCase("")) {
-					b.addrequete();
-					ct = new Nom(b);
-					ct.requete();
-				}
-				
-				sc = new Score(fo.getBs1());
-				
-				try {
-					ArrayList<Biere> lb = c.lister(b.getS(),
-							(String) fo.getJc1().getSelectedItem(),
-							(String) fo.getJc2().getSelectedItem(),
-							(String) fo.getJc3().getSelectedItem(),
-							(String) fo.getJc4().getSelectedItem(),
-							fo.getJtf().getText(),
-							sc
-							);
-					content.add(new Utilisateur(lb), listContent[2]);
-					cl.show(content, listContent[2]);
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-				b.clearS();
-			}
-		});
+		admin.addActionListener(new AdminController(fo, content,cl,listContent[1]));
+		rech.addActionListener(new UtilisateurController(fo,content,cl,listContent[2]));
 		
-		//On définit le layout
 		cl.setHgap(50);
 	    content.setLayout(cl);
-	    //On ajoute les cartes à la pile avec un nom pour les retrouver
+	    
 	    Administrateur ad = new Administrateur();
 	    Utilisateur us = new Utilisateur();
 	    content.add(us, listContent[0]);

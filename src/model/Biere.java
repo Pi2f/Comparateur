@@ -8,10 +8,12 @@ public class Biere implements Comparable<Biere>{
 	private String pays;
 	private String couleur;
 	private String typFerm;
+	private int douceur;
+	private int amertume;
 	private int score;
 	
 	public Biere(double prix, double degre, String nom, String marque,
-			String pays, String couleur, String typFerm) {
+			String pays, String couleur, String typFerm, int douceur, int amertume) {
 		this.prix = prix;
 		this.degre = degre;
 		this.nom = nom;
@@ -19,6 +21,8 @@ public class Biere implements Comparable<Biere>{
 		this.pays = pays;
 		this.couleur = couleur;
 		this.typFerm = typFerm;
+		this.douceur = douceur;
+		this.amertume = amertume;
 	}
 	
 	public double getPrix() {
@@ -41,6 +45,14 @@ public class Biere implements Comparable<Biere>{
 	}
 	public String getTypFerm() {
 		return typFerm;
+	}
+	
+	public int getAmertume() {
+		return amertume;
+	}
+	
+	public int getDouceur() {
+		return douceur;
 	}
 	
 	public int getScore() {

@@ -29,7 +29,9 @@ public class Formulaire extends JPanel {
 	JSlider js1;
 	JSlider js2;
 	
-	public Formulaire(ConnexionBDD c) {
+	public Formulaire() {
+		
+		ConnexionBDD c = new ConnexionBDD();
 		GridLayout gl = new GridLayout(0,1,0,0);
 		setLayout(gl);
 		
@@ -110,6 +112,12 @@ public class Formulaire extends JPanel {
 		js2 = new JSlider(JSlider.HORIZONTAL, 1, 5, 3);
 	    js2.setPaintLabels(true);
 	    js2.setLabelTable(js1.createStandardLabels(1));
+	    
+	    try {
+			c.terminer();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
 		
 		add(lbs1);
 		add(bs1);
@@ -165,5 +173,13 @@ public class Formulaire extends JPanel {
 	
 	public JComboBox<String> getJc4() {
 		return jc4;
+	}
+	
+	public JSlider getJs1() {
+		return js1;
+	}
+	
+	public JSlider getJs2() {
+		return js2;
 	}
 }

@@ -24,8 +24,6 @@ public class Utilisateur extends JPanel {
 	}
 	
 	public Utilisateur(ArrayList<Biere> alb) {
-		
-		
 		BiereListModel blm = new BiereListModel(alb);
 		BiereListRenderer blr = new BiereListRenderer();
 		jlb = new JList<Biere>(blm);

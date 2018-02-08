@@ -20,7 +20,7 @@ public class ConnexionBDD {
 		String connectionURL = "jdbc:mysql://localhost:3306/comparateur";
         try {
 			Class.forName("org.mariadb.jdbc.Driver");
-			System.out.println("connecting to psysical database...");
+			System.out.println("Connexion à la base de données...");
 	        conn = DriverManager.getConnection(connectionURL, "root",
 	                "comparator");
 		} catch (ClassNotFoundException e) {
@@ -35,7 +35,8 @@ public class ConnexionBDD {
 	}
 	
 	public void ajouter(String nom, String marque, String pays,
-			String prix, String degre, String couleur, String typeferm) throws SQLException {
+			String prix, String degre, String couleur, String typeferm,
+			String douceur, String amertume) throws SQLException {
             PreparedStatement statement = conn.prepareStatement(
             		"INSERT INTO beer (nom,marque,pays,prix,degre,couleur,typeferm) "
             		+ "VALUES(?,?,?,?,?,?,?)");
@@ -46,6 +47,8 @@ public class ConnexionBDD {
             statement.setDouble(5,Double.parseDouble(degre));
             statement.setString(6,couleur);
             statement.setString(7,typeferm);
+            statement.setInt(8,Integer.parseInt(douceur));
+            statement.setInt(9,Integer.parseInt(amertume));
               
             statement.executeUpdate();
             statement.close();
@@ -93,10 +96,12 @@ public class ConnexionBDD {
 		        		res.getString(3),
 		        		res.getString(4),
 		        		res.getString(7),
-		        		res.getString(8));
+		        		res.getString(8),
+		        		res.getInt(9),
+		        		res.getInt(10));
 				
 				
-				bi.setScore(sc.calculScore(bi));
+				bi.setScore(sc.calculScore2(bi));
 				
 				lb.add(bi);
 		    }
@@ -208,6 +213,7 @@ public class ConnexionBDD {
 		}
 		
 		public void terminer() throws SQLException {
+			System.out.println("Déconnexion de la base de données.");
 			conn.close();
 		}
 }
