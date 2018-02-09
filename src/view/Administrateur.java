@@ -36,7 +36,7 @@ public class Administrateur extends JPanel {
 		JTextField jtf2 = new JTextField();
 		JLabel ljtf3 = new JLabel("Degré");
 		JTextField jtf3 = new JTextField();
-		JLabel ljtf4 = new JLabel("Prix");
+		JLabel ljtf4 = new JLabel("");
 		JTextField jtf4 = new JTextField();
 		JLabel ljtf5 = new JLabel("Pays");
 		JTextField jtf5 = new JTextField();

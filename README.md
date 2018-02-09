@@ -27,7 +27,7 @@ Utilisateur :
     - Couleur
     - Marque
     - Degré d'alcool
-    - Prix
+    - 
     - Avis des consommateurs
   - Détermination de l'affichage.
     - Une barre latérale à gauche pour la sélection des critèbières
@@ -36,7 +36,7 @@ Utilisateur :
     - Priorité sous forme d'arbre (- prioritaire vers le +)
 
   ```
-    Prix
+    
     └─── Avis
     └─────── Marque
     └────────────── Couleur
@@ -84,7 +84,7 @@ Utilisateur :
 ** Critères trop strictes **
 
 Comparateurs :
-- Prix (+-25cts)
+-  (+-25cts)
 - Couleur à voir comment implémenter le comparateur
 - Marque
 - Degré + ou - légères (mettre des seuils + ou - 1)

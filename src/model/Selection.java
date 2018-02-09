@@ -17,8 +17,20 @@ public class Selection {
 			this.s = s;
 		}
 		
-		public void addrequete() {
-			setS(getS() + " && ");
+		public void andRequete() {
+			setS(getS() + " AND ");
+		}
+		
+		public void orRequete() {
+			setS(getS() + " OR ");
+		}
+		
+		public void parentheseOpen() {
+			setS(getS() + "(");
+		}
+		
+		public void parentheseClose() {
+			setS(getS() + ")");
 		}
 		
 		public void clearS() {
@@ -99,7 +111,7 @@ public class Selection {
 //		s = "";
 //		for (Iterator<?> iterator = selection.iterator(); iterator.hasNext();) {
 //			Biere bi = (Biere) iterator.next();
-//			s += bi.getStyle() + "\t" + bi.getCouleur() + "\t" + bi.getDegre() + "\t" + bi.getPrix() + "\n";
+//			s += bi.getStyle() + "\t" + bi.getCouleur() + "\t" + bi.getDegre() + "\t" + bi.get() + "\n";
 //		}
 //		return s;
 //	}

@@ -38,7 +38,7 @@ public class ConnexionBDD {
 			String prix, String degre, String couleur, String typeferm,
 			String douceur, String amertume) throws SQLException {
             PreparedStatement statement = conn.prepareStatement(
-            		"INSERT INTO beer (nom,marque,pays,prix,degre,couleur,typeferm) "
+            		"INSERT INTO beer (nom,marque,pays,,degre,couleur,typeferm) "
             		+ "VALUES(?,?,?,?,?,?,?)");
             statement.setString(1,nom);
             statement.setString(2,marque);
@@ -62,32 +62,39 @@ public class ConnexionBDD {
             statement.close();
 		}
 	
-		public ArrayList<Biere> lister(String s, String e, String f,
-				String g, String h, String j, Score sc) throws SQLException {
-			PreparedStatement st = conn.prepareStatement(s);
+		public ArrayList<Biere> lister(String requete, String[] pays, String marque,
+				String nom, String couleur, String typeferm, Score sc) throws SQLException {
+			PreparedStatement st = conn.prepareStatement(requete);
 			
 			int i = 0;
-				
-			if(e != "") {
+			System.out.println(requete);
+			
+			if(pays.length != 0) {
+				for(String p : pays) {
+					i++;
+					st.setString(i, p);
+				}
+			}	
+			if(marque != "") {
 				i++;
-				st.setString(i, e);
+				st.setString(i, marque);
 			}
-			if(f != "") {
+			if(!nom.equals("%")) {
 				i++;
-				st.setString(i, f);
+				st.setString(i, nom);
 			}
-			if(g != "") {
+			if(couleur != "") {
 				i++;
-				st.setString(i, g);
+				st.setString(i, couleur);
 			}
-			if(h != "") {
+			
+			if(typeferm != "") {
 				i++;
-				st.setString(i, h);
+				st.setString(i, typeferm);
 			}
 			
 			ResultSet res = st.executeQuery();
-			
-			ArrayList<Biere> lb = new ArrayList();
+			ArrayList<Biere> lb = new ArrayList<>();
 			while(res.next()){
 				Biere bi = new Biere(
 						res.getDouble(5),
@@ -101,7 +108,7 @@ public class ConnexionBDD {
 		        		res.getInt(10));
 				
 				
-				bi.setScore(sc.calculScore2(bi));
+				bi.setScore(sc.getScore(bi));
 				
 				lb.add(bi);
 		    }

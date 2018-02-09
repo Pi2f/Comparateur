@@ -36,7 +36,7 @@ Nous allons nous baser sur ces critères :
 - Marque
 - Bar proposant la bière à sa carte (Marseille pour l’instant),
 - Avis, Popularité,
-- Prix.
+- .
 
 Notre comparateur proposera différents modèles de critères :
 
@@ -48,7 +48,7 @@ Notre comparateur proposera différents modèles de critères :
 
 ## Critères souples :
 
-- Prix et degré d'alcool -> fourchette slider
+-  et degré d'alcool -> fourchette slider
 - Douceur et amertume -> sur 5 étoile
 - Avis -> sur 5 étoile
 

@@ -7,6 +7,6 @@ public class Nom extends Critere {
 	
 	@Override
 	public void requete() {
-		b.setS(b.getS() + "Nom = ?");
+		b.setS(b.getS() + "Nom LIKE ?");
 	}
 }
