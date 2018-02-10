@@ -20,12 +20,14 @@ public class Score {
 	
 	public int getScore(Biere b) {
 		score = 0;
-		calculScore(b.getPrix(), bs1);
-		calculScore(b.getDegre(), bs2);
+		calculScoreBS(b.getPrix(), bs1);
+		calculScoreBS(b.getDegre(), bs2);
+		calculScoreJS(b.getDouceur(), s1);
+		calculScoreJS(b.getAmertume(), s2);
 		return score;
 	}
 	
-	public void calculScore(double valEchelle, BiSlider bs) {	
+	private void calculScoreBS(double valBiere, BiSlider bs) {	
 		int valeur;
 		double cond;
 		int enleve;
@@ -52,12 +54,16 @@ public class Score {
 		intervalle = intervalle/i;
 		valeur = 110 - i*10;
 		enleve = 11-i;
-		cond = Math.abs(valEchelle - moy);
+		cond = Math.abs(valBiere - moy);
 		while(cond > 0) {
 			cond = cond - intervalle;
 			valeur -= enleve;
 		}
 		score += valeur;
+	}
+	
+	private void calculScoreJS(int valBiere, JSlider s) {
+		score += 100-Math.abs(valBiere-s.getValue())*25;
 	}
 	
 	public static double roundAvoid(double value, int places) {

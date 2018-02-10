@@ -1,11 +1,9 @@
 package view;
 
 import java.awt.Color;
-import java.awt.Dimension;
 import java.awt.GridLayout;
-import java.awt.event.ItemEvent;
+import java.awt.Insets;
 import java.sql.SQLException;
-import java.util.Dictionary;
 
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -182,5 +180,10 @@ public class Formulaire extends JPanel {
 	
 	public JSlider getJs2() {
 		return js2;
+	}
+	
+	@Override
+	public Insets insets() {
+		return new Insets(30, 30, 30, 30);
 	}
 }

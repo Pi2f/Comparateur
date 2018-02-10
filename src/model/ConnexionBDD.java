@@ -36,10 +36,10 @@ public class ConnexionBDD {
 	
 	public void ajouter(String nom, String marque, String pays,
 			String prix, String degre, String couleur, String typeferm,
-			String douceur, String amertume) throws SQLException {
+			String amertume, String douceur) throws SQLException {
             PreparedStatement statement = conn.prepareStatement(
-            		"INSERT INTO beer (nom,marque,pays,,degre,couleur,typeferm) "
-            		+ "VALUES(?,?,?,?,?,?,?)");
+            		"INSERT INTO beer (nom,marque,pays,prix,degre,couleur,typeferm,amertume,douceur) "
+            		+ "VALUES(?,?,?,?,?,?,?,?,?)");
             statement.setString(1,nom);
             statement.setString(2,marque);
             statement.setString(3,pays);             
@@ -47,8 +47,8 @@ public class ConnexionBDD {
             statement.setDouble(5,Double.parseDouble(degre));
             statement.setString(6,couleur);
             statement.setString(7,typeferm);
-            statement.setInt(8,Integer.parseInt(douceur));
-            statement.setInt(9,Integer.parseInt(amertume));
+            statement.setInt(8,Integer.parseInt(amertume));
+            statement.setInt(9,Integer.parseInt(douceur));
               
             statement.executeUpdate();
             statement.close();
@@ -56,66 +56,81 @@ public class ConnexionBDD {
 	
 		public void supprimer(String nom) throws SQLException {
 			PreparedStatement statement = conn.prepareStatement(
-            		"DELETE FROM beer WHERE nom=?");
+            		"DELETE FROM beer WHERE Nom =?");
             statement.setString(1,nom);
             statement.executeUpdate();
             statement.close();
 		}
+		
+		public Biere getBiere(String nom) throws SQLException {
+			PreparedStatement s = conn.prepareStatement(
+            		"SELECT * FROM beer WHERE Nom =?");
+			s.setString(1, nom);
+			ResultSet res = s.executeQuery();
+			res.next();
+			Biere b = new Biere(
+					res.getString(2),
+	        		res.getString(3),
+	        		res.getString(4),
+	        		res.getDouble(5),
+	        		res.getDouble(6),
+	        		res.getString(7),
+	        		res.getString(8),
+	        		res.getInt(9),
+	        		res.getInt(10));
+			return b;
+		}
 	
-		public ArrayList<Biere> lister(String requete, String[] pays, String marque,
-				String nom, String couleur, String typeferm, Score sc) throws SQLException {
+		public ArrayList<Biere> lister(String requete, String[] pays, String[] marque,
+				String nom, String[] couleur, String[] typeferm, Score sc) throws SQLException {
 			PreparedStatement st = conn.prepareStatement(requete);
 			
 			int i = 0;
-			System.out.println(requete);
 			
-			if(pays.length != 0) {
-				for(String p : pays) {
-					i++;
-					st.setString(i, p);
-				}
-			}	
-			if(marque != "") {
-				i++;
-				st.setString(i, marque);
-			}
+			i = addCond(pays, st, i);
+			i = addCond(marque, st, i);
 			if(!nom.equals("%")) {
 				i++;
 				st.setString(i, nom);
 			}
-			if(couleur != "") {
-				i++;
-				st.setString(i, couleur);
-			}
+			i = addCond(couleur, st, i);
+			i = addCond(typeferm, st, i);
 			
-			if(typeferm != "") {
-				i++;
-				st.setString(i, typeferm);
-			}
 			
 			ResultSet res = st.executeQuery();
 			ArrayList<Biere> lb = new ArrayList<>();
 			while(res.next()){
 				Biere bi = new Biere(
-						res.getDouble(5),
-		        		res.getDouble(6),
-		        		res.getString(2),
+						res.getString(2),
 		        		res.getString(3),
 		        		res.getString(4),
+		        		res.getDouble(5),
+		        		res.getDouble(6),
 		        		res.getString(7),
 		        		res.getString(8),
 		        		res.getInt(9),
 		        		res.getInt(10));
-				
-				
 				bi.setScore(sc.getScore(bi));
-				
 				lb.add(bi);
 		    }
 			
 			lb.sort(null);
 			st.close();
 			return lb;
+		}
+		
+		private int addCond(String[] s, PreparedStatement st, int i) {
+			if(s.length != 0) {
+				for(String s1 : s) {
+					i++;
+					try {
+						st.setString(i, s1);
+					} catch (SQLException e) {
+						e.printStackTrace();
+					}
+				}
+			}
+			return i;
 		}
 		
 		public Double getPrixMax() throws SQLException {
@@ -157,6 +172,25 @@ public class ConnexionBDD {
 			String[] ret = new String[res.getInt(1)+1];
 			
 			res = s.executeQuery("SELECT DISTINCT(Pays) FROM beer");
+			
+			ret[0]="";
+			int i = 1;
+			while(res.next()) {
+				ret[i] = res.getString(1);
+				i++;
+			}
+			s.close();
+			return ret;
+		}
+		
+		
+		public String[] getNom() throws SQLException {
+			Statement s = conn.createStatement();
+			ResultSet res = s.executeQuery("SELECT COUNT(Nom) FROM beer");
+			res.next();
+			String[] ret = new String[res.getInt(1)+1];
+			
+			res = s.executeQuery("SELECT Nom FROM beer");
 			
 			ret[0]="";
 			int i = 1;

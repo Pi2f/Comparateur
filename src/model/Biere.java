@@ -12,8 +12,8 @@ public class Biere implements Comparable<Biere>{
 	private int amertume;
 	private int score;
 	
-	public Biere(double prix, double degre, String nom, String marque,
-			String pays, String couleur, String typFerm, int douceur, int amertume) {
+	public Biere(String nom, String marque,
+			String pays, double prix, double degre, String couleur, String typFerm, int amertume, int douceur) {
 		this.prix = prix;
 		this.degre = degre;
 		this.nom = nom;

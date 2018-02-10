@@ -1,16 +1,9 @@
 package view;
 
-import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
-import java.awt.GridLayout;
 import java.util.ArrayList;
 
-import javax.swing.JButton;
 import javax.swing.JList;
 import javax.swing.JPanel;
-import javax.swing.JScrollBar;
-import javax.swing.JScrollPane;
 
 import model.Biere;
 import model.ConnexionBDD;

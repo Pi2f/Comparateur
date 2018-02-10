@@ -7,7 +7,7 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class Selection {
-		String s = "SELECT * FROM beer WHERE 1=1";
+		String s = "SELECT * FROM beer WHERE (1=1";
 		
 		public String getS() {
 			return s;
@@ -18,23 +18,15 @@ public class Selection {
 		}
 		
 		public void andRequete() {
-			setS(getS() + " AND ");
+			setS(getS() + ") AND (");
 		}
 		
-		public void orRequete() {
-			setS(getS() + " OR ");
-		}
-		
-		public void parentheseOpen() {
-			setS(getS() + "(");
-		}
-		
-		public void parentheseClose() {
+		public void finRequete() {
 			setS(getS() + ")");
 		}
 		
 		public void clearS() {
-			s = "SELECT * FROM beer WHERE 1=1";
+			s = "SELECT * FROM beer WHERE (1=1";
 		}
 
 	
