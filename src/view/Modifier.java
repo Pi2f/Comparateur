@@ -14,6 +14,7 @@ import javax.swing.JTextField;
 import model.Biere;
 import model.ConnexionBDD;
 
+@SuppressWarnings("serial")
 public class Modifier extends JPanel {
 	
 	private JButton jb2;

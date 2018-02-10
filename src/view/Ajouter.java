@@ -12,6 +12,7 @@ import javax.swing.JTextField;
 
 import model.ConnexionBDD;
 
+@SuppressWarnings("serial")
 public class Ajouter extends JPanel{
 	private JButton jb1;
 	private ConnexionBDD c;

@@ -4,17 +4,15 @@ import java.awt.Color;
 import java.awt.Component;
 import java.awt.Dimension;
 import java.awt.FlowLayout;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
 
 import javax.swing.JLabel;
 import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.ListCellRenderer;
-import javax.swing.SpringLayout;
 
 import model.Biere;
 
+@SuppressWarnings("serial")
 public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere> {
 	private JLabel nom;
 	private JLabel marque;
@@ -42,16 +40,16 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		amertume = new JLabel();
 		score = new JLabel();
 		
-		nom.setPreferredSize(new Dimension(200, 20));
-		marque.setPreferredSize(new Dimension(200,20));
+		nom.setPreferredSize(new Dimension(300, 20));
+		marque.setPreferredSize(new Dimension(300,20));
 		pays.setPreferredSize(new Dimension(120,20));
-		typeferm.setPreferredSize(new Dimension(75,20));
+		typeferm.setPreferredSize(new Dimension(130,20));
 		couleur.setPreferredSize(new Dimension(60,20));
-		degre.setPreferredSize(new Dimension(30,20));
-		prix.setPreferredSize(new Dimension(30,20));
-		douceur.setPreferredSize(new Dimension(30,20));
-		amertume.setPreferredSize(new Dimension(30,20));
-		score.setPreferredSize(new Dimension(30, 20));
+		degre.setPreferredSize(new Dimension(60,20));
+		prix.setPreferredSize(new Dimension(60,20));
+		douceur.setPreferredSize(new Dimension(60,20));
+		amertume.setPreferredSize(new Dimension(60,20));
+		score.setPreferredSize(new Dimension(60, 20));
 		
 		add(nom);
 		add(marque);
@@ -91,5 +89,7 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		setOpaque(true);
 		return this;
 	}
+	
+	
 	
 }

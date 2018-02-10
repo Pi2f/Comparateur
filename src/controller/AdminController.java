@@ -7,14 +7,12 @@ import java.awt.event.ActionListener;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
-import javafx.scene.control.PasswordField;
 import model.ConnexionBDD;
 import view.Administrateur;
 import view.Formulaire;
@@ -44,7 +42,7 @@ public class AdminController implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent arg0) {
 		String login1 = login.getText();
-        String password = passwd.getText();
+		String password = passwd.getText();
             try {
                 PreparedStatement statement =  c.getConn().prepareStatement("SELECT password FROM authentification WHERE login ='"+login1+"'");
                 ResultSet resultat = statement.executeQuery();

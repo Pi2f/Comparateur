@@ -42,13 +42,9 @@ public class Score {
 		
 		
 		int i = 0;
-		while(fourchette > 0) {
+		while(fourchette > intervalleTotal) {
 			fourchette = fourchette - intervalleTotal;
 			i++;
-		}
-		
-		if(i > 1) {
-			i--;
 		}
 		
 		intervalle = intervalle/i;

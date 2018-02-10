@@ -20,6 +20,7 @@ import javax.swing.JTextField;
 import controller.AdminController;
 import controller.UtilisateurController;
 
+@SuppressWarnings("serial")
 public class Fenetre extends JFrame {
 		
 	  CardLayout cl = new CardLayout();
@@ -81,6 +82,6 @@ public class Fenetre extends JFrame {
 	}
 	
 	public static void main(String[] args) {
-		Fenetre f = new Fenetre("BeerComparator", 0, 0, MAXIMIZED_HORIZ, MAXIMIZED_VERT);
+		new Fenetre("BeerComparator", 0, 0, MAXIMIZED_HORIZ, MAXIMIZED_VERT);
 	}
 }

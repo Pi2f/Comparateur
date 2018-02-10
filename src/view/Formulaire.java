@@ -15,6 +15,7 @@ import com.visutools.nav.bislider.BiSlider;
 
 import model.ConnexionBDD;
 
+@SuppressWarnings("serial")
 public class Formulaire extends JPanel {
 	
 	JTextField jtf;
