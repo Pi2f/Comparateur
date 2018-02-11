@@ -29,6 +29,18 @@ public class ConnexionBDD {
 		return conn;
 	}
 	
+	public boolean getAuth(String login, char[] mdp) throws SQLException {
+		PreparedStatement statement =  conn.prepareStatement("SELECT password FROM authentification WHERE login ='"+login+"'");
+        ResultSet resultat = statement.executeQuery();
+        resultat.next();
+        String motDePasse = resultat.getString(1);
+        if(motDePasse.equals(new String(mdp))) {
+            return true; 
+        } else {   
+            return false;
+        }
+	}
+	
 	public void ajouter(String nom, String marque, String pays,
 			String prix, String degre, String couleur, String typeferm,
 			String amertume, String douceur) throws SQLException {
@@ -94,7 +106,9 @@ public class ConnexionBDD {
 			
 			ResultSet res = st.executeQuery();
 			ArrayList<Biere> lb = new ArrayList<>();
-			while(res.next()){
+			int j = 0;
+			while(res.next() && j < 10){
+				j++;
 				Biere bi = new Biere(
 						res.getString(2),
 		        		res.getString(3),

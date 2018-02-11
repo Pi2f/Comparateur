@@ -2,22 +2,16 @@ package view;
 
 import java.awt.BorderLayout;
 import java.awt.CardLayout;
-import java.awt.FlowLayout;
 import java.awt.Frame;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
 import javax.swing.BorderFactory;
 import javax.swing.JButton;
 import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
 import javax.swing.JPanel;
-import javax.swing.JPasswordField;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 
 import controller.AdminController;
+import controller.Login;
 import controller.UtilisateurController;
 
 @SuppressWarnings("serial")
@@ -42,30 +36,7 @@ public class Fenetre extends JFrame {
 		fo.add(rech);
 		fo.add(admin);
 		
-		admin.addActionListener(new ActionListener() {
-			@Override
-			public void actionPerformed(ActionEvent e) {
-				JLabel login = new JLabel("Login");
-		        JTextField login1 = new JTextField(25);
-		         
-		        JLabel mdp = new JLabel("Mot de Passe");
-		        JPasswordField mdp1 = new JPasswordField(25);
-		        
-		        JPanel j = new JPanel();
-		        j.setLayout(new FlowLayout());
-		        j.add(login);
-		        j.add(login1);
-		        j.add(mdp);
-		        j.add(mdp1);
-		        
-		        setLocationRelativeTo(null);
-		        JOptionPane.showMessageDialog(fo, j, "Login", JOptionPane.NO_OPTION);
-		        
-		        
-				AdminController ad = new AdminController(fo, content, cl, listContent, login1, mdp1);
-				ad.actionPerformed(null);
-			}
-		});
+		admin.addActionListener(new Login(new AdminController(fo, content, cl, listContent), this));
 		rech.addActionListener(new UtilisateurController(fo,content,cl,listContent[0]));
 		
 		cl.setHgap(50);

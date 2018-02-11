@@ -18,16 +18,18 @@ import model.ConnexionBDD;
 @SuppressWarnings("serial")
 public class Formulaire extends JPanel {
 	
-	JTextField jtf;
-	BiSlider bs1;
-	BiSlider bs2;
-	JComboBox<String> jc1;
-	JComboBox<String> jc2;
-	JComboBox<String> jc3;
-	JComboBox<String> jc4;
+	private JTextField jtf;
+	private BiSlider bs1;
+	private BiSlider bs2;
+	private JComboBox<String> jc1;
+	private JComboBox<String> jc2;
+	private JComboBox<String> jc3;
+	private JComboBox<String> jc4;
 	
-	JSlider js1;
-	JSlider js2;
+	private JSlider js1;
+	private JSlider js2;
+	
+	private CheckBoxRenderer cbr, cbr1, cbr2, cbr3;
 	
 	public Formulaire() {
 		
@@ -114,11 +116,19 @@ public class Formulaire extends JPanel {
 	    js2.setLabelTable(js1.createStandardLabels(1));
 	    
 	    try {
+	    	cbr = new CheckBoxRenderer(c.getPays());
+			jc1.setRenderer(cbr);
+			cbr1 = new CheckBoxRenderer(c.getMarque());
+			jc2.setRenderer(cbr1);
+			cbr2 = new CheckBoxRenderer(c.getCouleur());
+			jc3.setRenderer(cbr2);
+			cbr3 = new CheckBoxRenderer(c.getTypeFerm());
+			jc4.setRenderer(cbr3);
 			c.terminer();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+	    
 		add(lbs1);
 		add(bs1);
 		
@@ -159,18 +169,31 @@ public class Formulaire extends JPanel {
 		return bs2;
 	}
 
+	public CheckBoxRenderer getCbr() {
+		return cbr;
+	}
+	
+	public CheckBoxRenderer getCbr1() {
+		return cbr1;
+	}
+	
+	public CheckBoxRenderer getCbr2() {
+		return cbr2;
+	}
+	
+	public CheckBoxRenderer getCbr3() {
+		return cbr3;
+	}
+	
 	public JComboBox<String> getJc1() {
 		return jc1;
 	}
-
 	public JComboBox<String> getJc2() {
 		return jc2;
 	}
-
 	public JComboBox<String> getJc3() {
 		return jc3;
 	}
-	
 	public JComboBox<String> getJc4() {
 		return jc4;
 	}
