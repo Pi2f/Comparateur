@@ -1,10 +1,16 @@
 package model;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Objet permettant d'ajouter des conditions à une requête
+ */
 public abstract class Critere {
-	protected Selection b;	
+	protected Requete b;	
 	String requete;
 	
-	public Critere(Selection b) {
+	public Critere(Requete b) {
 		this.b = b;
 	}
 	

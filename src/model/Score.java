@@ -4,6 +4,13 @@ import javax.swing.JSlider;
 
 import com.visutools.nav.bislider.BiSlider;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Objet score de la bière selon les critères de sélection souples
+ */
+
 public class Score {
 	private int score;
 	private BiSlider bs1;
@@ -11,6 +18,12 @@ public class Score {
 	private JSlider s1;
 	private JSlider s2;
 	
+	/**
+	 * @param bs1 Fourchette Prix
+	 * @param bs2 Fourchette Degré 
+	 * @param s1 Curseur d'amertume
+	 * @param s2 Curseur de douceur
+	 */
 	public Score(BiSlider bs1, BiSlider bs2, JSlider s1, JSlider s2) {
 		this.bs1 = bs1;
 		this.bs2 = bs2;

@@ -1,8 +1,8 @@
 package view;
 
+import java.awt.Color;
 import java.awt.Component;
-import java.lang.reflect.Constructor;
-import java.lang.reflect.InvocationTargetException;
+import java.awt.Font;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
@@ -13,9 +13,14 @@ import javax.swing.ListCellRenderer;
 
 import model.ConnexionBDD;
 import model.Critere;
-import model.Selection;
+import model.Requete;
 
-
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Redéfinition du rendu d'un élément d'une liste JComboBox sous forme de case à cocher
+ */
 public class CheckBoxRenderer  implements ListCellRenderer<Object> {
     private Map<String, JCheckBox> items = new HashMap<>();
     private int i = 0;
@@ -23,7 +28,9 @@ public class CheckBoxRenderer  implements ListCellRenderer<Object> {
     public CheckBoxRenderer(String[] items) {
         for (String item : items) {
             JCheckBox box = new JCheckBox(item);
-            box.setOpaque(false);
+            box.setFont(new Font("Dialog",Font.PLAIN,14));
+            box.setBackground(new Color(255, 182, 184));
+            box.setOpaque(true);
             this.items.put(item, box);
         }
     }
@@ -37,15 +44,20 @@ public class CheckBoxRenderer  implements ListCellRenderer<Object> {
             return null;
         }
     }
-
-    public void setSelected(String item, ConnexionBDD c, Selection b, Constructor<?> cct) throws InstantiationException, IllegalAccessException, IllegalArgumentException, InvocationTargetException {
+    
+    
+    /**
+     * Possibilité de sélectionner plusieurs éléments d'un critère de sélection
+     * @param item élément courant de la liste
+     * @param b sélection à modifier
+     * @param ct Type de critère de sélection
+     */
+    public void setSelected(String item,Requete b, Critere ct) {
     	JCheckBox cb = items.get(item);
-    	Critere ct;
     	if (item.contains(item) && cb.isSelected()) {
             cb.setSelected(false);
         } else {
         	cb.setSelected(true);
-        	ct = (Critere) cct.newInstance(b);
         	i++;
         	if(i > 1) {
         		ct.requete(true);
@@ -56,12 +68,19 @@ public class CheckBoxRenderer  implements ListCellRenderer<Object> {
         }
     }
     
+    
+    /**
+     * @return les multiples sélections du critère
+     */
     public String[] getSelectedItems() {
     	ArrayList<String> ret = new ArrayList<>();
     	items.forEach((s,c) -> {if(c.isSelected()) ret.add(s);});
     	return ret.toArray(new String[0]);
     }
     
+    /**
+     * Réinitialise les éléments sélectionnés 
+     */
     public void resetSelectedItems() {
     	items.forEach((s,c) -> {if(c.isSelected()) c.setSelected(false);});
     	i = 0;

@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -14,6 +15,12 @@ import javax.swing.JTextField;
 import model.Biere;
 import model.ConnexionBDD;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Panneau qui permet la modification des bières de la BDD.
+ */
 @SuppressWarnings("serial")
 public class Modifier extends JPanel {
 	
@@ -28,6 +35,7 @@ public class Modifier extends JPanel {
 	public Modifier() {
 		c = new ConnexionBDD();
 		JLabel mo = new JLabel("Modifier ou supprimer une Bière");
+		mo.setFont(new Font("Dialog",Font.BOLD,20));
 		add(mo);
 		
 		lmodifier = new JComboBox<>();
@@ -41,7 +49,9 @@ public class Modifier extends JPanel {
 		
 		add(lmodifier);
 		jb2 = new JButton("Modifier");
+		jb2.setFont(new Font("Dialog",Font.BOLD,14));
 		jb3 = new JButton("Supprimer");
+		jb3.setFont(new Font("Dialog",Font.BOLD,14));
 		
 		add(jb2);
 		add(jb3);
@@ -90,6 +100,7 @@ public class Modifier extends JPanel {
 				}
 				for(int i = 0; i < 9; i++) {
 					jl[i] = new JLabel(s[i]);
+					jl[i].setFont(new Font("Dialog",Font.BOLD,14));
 				}
 				in[0] = new JTextField(b.getNom());
 				in[1] = new JTextField(b.getMarque());
@@ -109,6 +120,7 @@ public class Modifier extends JPanel {
 					add(jl[i]);
 					add(in[i]);
 				}
+				save.setFont(new Font("Dialog",Font.BOLD,18));
 				add(save);
 				revalidate();
 			}

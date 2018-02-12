@@ -1,5 +1,11 @@
 package model;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Objet bière
+ */
 public class Biere implements Comparable<Biere>{
 	private double prix;
 	private double degre;

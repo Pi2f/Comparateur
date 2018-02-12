@@ -21,6 +21,12 @@ public class AdminController {
 	private Formulaire fo;
 	private ConnexionBDD c;
 	
+	/**
+	 * @author FRANC Pierre, GIBASSIER Romain
+	 * @version 1.0
+	 * 
+	 * Contrôleur d'authentification
+	 */
 	public AdminController(Formulaire fo, JPanel content, CardLayout cl, String[] listContent) {
 		this.cl = cl;
 		this.content = content;

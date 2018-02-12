@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.GridLayout;
 import java.awt.Insets;
 import java.sql.SQLException;
@@ -15,6 +16,12 @@ import com.visutools.nav.bislider.BiSlider;
 
 import model.ConnexionBDD;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ *
+ *	Panneau comportant le formulaire de sélection des critères
+ */
 @SuppressWarnings("serial")
 public class Formulaire extends JPanel {
 	
@@ -37,7 +44,10 @@ public class Formulaire extends JPanel {
 		GridLayout gl = new GridLayout(0,1,0,0);
 		setLayout(gl);
 		
+		setBackground(new Color(255, 182, 184));
+		
 		JLabel lbs1 = new JLabel("Prix");
+		lbs1.setFont(new Font("Dialog",Font.BOLD,18));
 		bs1 = new BiSlider(BiSlider.RGB);
 		bs1.setVisible(true);
 		double seg = 1;
@@ -56,6 +66,7 @@ public class Formulaire extends JPanel {
 		bs1.setPrecise(true);
 		
 		JLabel lbs2 = new JLabel("Degré");
+		lbs2.setFont(new Font("Dialog",Font.BOLD,18));
 		bs2 = new BiSlider(BiSlider.RGB);
 		try {
 			bs2.setMinimumValue(c.getDegreMin());
@@ -71,49 +82,62 @@ public class Formulaire extends JPanel {
 	    bs2.setMaximumColor(Color.RED);
 		
 		JLabel ljc1 = new JLabel("Pays");
+		ljc1.setFont(new Font("Dialog",Font.BOLD,18));
 		jc1 = null;
 		try {
 			jc1 = new JComboBox<String>(c.getPays());
+			jc1.setBackground(new Color(255, 182, 184));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		JLabel ljc2 = new JLabel("Marque");
+		ljc2.setFont(new Font("Dialog",Font.BOLD,18));
 		jc2 = null;
 		try {
 			jc2 = new JComboBox<String>(c.getMarque());
+			jc2.setBackground(new Color(255, 182, 184));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		JLabel ljtf = new JLabel("Nom");
+		ljtf.setFont(new Font("Dialog",Font.BOLD,18));
 		jtf = new JTextField();
 		
 		JLabel ljc3 = new JLabel("Couleur");
+		ljc3.setFont(new Font("Dialog",Font.BOLD,18));
 		jc3 = null;
 		try {
 			jc3 = new JComboBox<String>(c.getCouleur());
+			jc3.setBackground(new Color(255, 182, 184));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
 		JLabel ljc4 = new JLabel("Type de fermentation");
+		ljc4.setFont(new Font("Dialog",Font.BOLD,18));
 		jc4 = null;
 		try {
 			jc4 = new JComboBox<String>(c.getTypeFerm());
+			jc4.setBackground(new Color(255, 182, 184));
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
 		
-		
 		JLabel ljs1= new JLabel("Douceur");
+		ljs1.setFont(new Font("Dialog",Font.BOLD,18));
 		js1 = new JSlider(JSlider.HORIZONTAL, 1, 5, 3);
 	    js1.setPaintLabels(true);
 	    js1.setLabelTable(js1.createStandardLabels(1));
+	    js1.setBackground(new Color(255, 182, 184));
+	    
 		JLabel ljs2= new JLabel("Amertume");
+		ljs2.setFont(new Font("Dialog",Font.BOLD,18));
 		js2 = new JSlider(JSlider.HORIZONTAL, 1, 5, 3);
 	    js2.setPaintLabels(true);
 	    js2.setLabelTable(js1.createStandardLabels(1));
+	    js2.setBackground(new Color(255, 182, 184));
 	    
 	    try {
 	    	cbr = new CheckBoxRenderer(c.getPays());
@@ -135,26 +159,26 @@ public class Formulaire extends JPanel {
 		add(lbs2);
 		add(bs2);
 		
+		add(ljs1);
+		add(js1);
+		
+		add(ljs2);
+		add(js2);
+		
+		add(ljtf);
+		add(jtf);
+		
 		add(ljc1);
 		add(jc1);
 		
 		add(ljc2);
 		add(jc2);
 		
-		add(ljtf);
-		add(jtf);
-		
 		add(ljc3);
 		add(jc3);
 		
 		add(ljc4);
 		add(jc4);
-		
-		add(ljs1);
-		add(js1);
-		
-		add(ljs2);
-		add(js2);
 	}
 
 	public JTextField getJtf() {
@@ -204,6 +228,22 @@ public class Formulaire extends JPanel {
 	
 	public JSlider getJs2() {
 		return js2;
+	}
+	
+	
+	/**
+	 * Réinitialise les champs du formulaire
+	 */
+	public void resetForm() {
+		cbr.resetSelectedItems();
+		jc1.setSelectedIndex(0);
+		cbr1.resetSelectedItems();
+		jc2.setSelectedIndex(0);
+		cbr2.resetSelectedItems();
+		jc3.setSelectedIndex(0);
+		cbr3.resetSelectedItems();
+		jc4.setSelectedIndex(0);
+		jtf.setText("");
 	}
 	
 	@Override

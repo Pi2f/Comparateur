@@ -13,6 +13,13 @@ import javax.swing.UIManager;
 
 import view.Fenetre;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Demande d'authentification
+ */
+
 public class Login implements ActionListener {
 	Fenetre f;
 	AdminController ad;

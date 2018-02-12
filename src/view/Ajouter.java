@@ -1,6 +1,7 @@
 package view;
 
 import java.awt.Dimension;
+import java.awt.Font;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
@@ -12,6 +13,12 @@ import javax.swing.JTextField;
 
 import model.ConnexionBDD;
 
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Panneau qui permet la modification des bières de la BDD.
+ */
 @SuppressWarnings("serial")
 public class Ajouter extends JPanel{
 	private JButton jb1;
@@ -19,17 +26,20 @@ public class Ajouter extends JPanel{
 	
 	public Ajouter() {
 		JLabel aj = new JLabel("Ajouter une Bière");
+		aj.setFont(new Font("Dialog",Font.BOLD,20));
 		add(aj);
 		
 		JLabel[] lajout = new JLabel[9];
 		String[] sAjout = {"Nom" ,"Marque","Pays","Prix","Degré","Couleur","Type de fermentation","Amertume","Douceur"};
 		JTextField[] iajout = new JTextField[9];
 		jb1 = new JButton("Ajouter");
+		jb1.setFont(new Font("Dialog",Font.BOLD,14));
 		
 		for(int i = 0; i < 9; i++) {
 			lajout[i] = new JLabel(sAjout[i]);
 			iajout[i] = new JTextField();
 			iajout[i].setMaximumSize(new Dimension(500, 30));
+			lajout[i].setFont(new Font("Dialog",Font.PLAIN,18));
 		}
 		
 		jb1.addActionListener(new ActionListener() {

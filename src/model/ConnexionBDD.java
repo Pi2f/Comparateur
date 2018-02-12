@@ -8,8 +8,13 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import javax.swing.JSlider;
+
+import com.visutools.nav.bislider.BiSlider;
+
 public class ConnexionBDD {
-	Connection conn;
+	private Connection conn;
+	private Requete s;
 	
 	public ConnexionBDD() {
 		String connectionURL = "jdbc:mysql://localhost:3306/comparateur";
@@ -29,16 +34,32 @@ public class ConnexionBDD {
 		return conn;
 	}
 	
+	public void createRequete() {
+		s = new Requete();
+	}
+	
+	public Requete getRequete() {
+		return s;
+	}
+	
+	public Score getScore(BiSlider bs1, BiSlider bs2, JSlider s1, JSlider s2) {
+		return new Score(bs1,bs2,s1,s2);
+	}
+	
 	public boolean getAuth(String login, char[] mdp) throws SQLException {
 		PreparedStatement statement =  conn.prepareStatement("SELECT password FROM authentification WHERE login ='"+login+"'");
         ResultSet resultat = statement.executeQuery();
-        resultat.next();
-        String motDePasse = resultat.getString(1);
-        if(motDePasse.equals(new String(mdp))) {
-            return true; 
-        } else {   
-            return false;
+        if(resultat.next()){
+        	String motDePasse = resultat.getString(1);
+            if(motDePasse.equals(new String(mdp))) {
+                return true; 
+            } else {
+                return false;
+            }
+        } else {
+        	return false;
         }
+        
 	}
 	
 	public void ajouter(String nom, String marque, String pays,
@@ -91,7 +112,6 @@ public class ConnexionBDD {
 		public ArrayList<Biere> lister(String requete, String[] pays, String[] marque,
 				String nom, String[] couleur, String[] typeferm, Score sc) throws SQLException {
 			PreparedStatement st = conn.prepareStatement(requete);
-			
 			int i = 0;
 			
 			i = addCond(pays, st, i);
@@ -104,6 +124,7 @@ public class ConnexionBDD {
 			i = addCond(typeferm, st, i);
 			
 			
+			System.out.println(st);
 			ResultSet res = st.executeQuery();
 			ArrayList<Biere> lb = new ArrayList<>();
 			int j = 0;

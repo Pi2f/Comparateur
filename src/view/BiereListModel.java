@@ -7,6 +7,13 @@ import javax.swing.event.ListDataListener;
 
 import model.Biere;
 
+
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Redéfinition du modèle de la liste de Bière pour gérer un tableau
+ */
 public class BiereListModel implements ListModel<Biere> {
 	ArrayList<Biere> alb;
 	
@@ -30,6 +37,5 @@ public class BiereListModel implements ListModel<Biere> {
 
 	@Override
 	public void removeListDataListener(ListDataListener arg0) {
-
 	}
 }
