@@ -14,7 +14,7 @@ import javax.swing.JTextField;
 
 import com.visutools.nav.bislider.BiSlider;
 
-import model.ConnexionBDD;
+import controller.ConnexionBDD;
 
 /**
  * @author FRANC Pierre, GIBASSIER Romain

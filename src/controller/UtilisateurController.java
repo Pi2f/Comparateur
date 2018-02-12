@@ -12,8 +12,6 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 
 import model.Biere;
-import model.ConnexionBDD;
-
 import view.Formulaire;
 import view.Utilisateur;
 

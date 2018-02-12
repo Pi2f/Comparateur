@@ -123,7 +123,7 @@ public class BiereListRenderer extends JPanel implements ListCellRenderer<Biere>
 		prix.setText(String.valueOf(arg1.getPrix()));
 		douceur.setText(String.valueOf(arg1.getAmertume()));
 		amertume.setText(String.valueOf(arg1.getDouceur()));
-		score.setText(String.valueOf(arg1.getScore()));
+		score.setText(String.valueOf(100*arg1.getScore()/400));
 		
 		setOpaque(true);
 		return this;

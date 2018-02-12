@@ -63,7 +63,7 @@ public class Score {
 		intervalle = intervalle/i;
 		valeur = 110 - i*10;
 		enleve = 11-i;
-		cond = Math.abs(valBiere - moy);
+		cond = Math.abs(valBiere - moy);		
 		while(cond > 0) {
 			cond = cond - intervalle;
 			valeur -= enleve;

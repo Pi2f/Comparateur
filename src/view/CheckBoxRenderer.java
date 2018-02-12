@@ -11,7 +11,6 @@ import javax.swing.JCheckBox;
 import javax.swing.JList;
 import javax.swing.ListCellRenderer;
 
-import model.ConnexionBDD;
 import model.Critere;
 import model.Requete;
 

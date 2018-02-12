@@ -8,10 +8,16 @@ import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.UIManager;
 
-import model.ConnexionBDD;
 import view.Administrateur;
 import view.Formulaire;
 import view.Utilisateur;
+
+/**
+ * @author FRANC Pierre, GIBASSIER Romain
+ * @version 1.0
+ * 
+ * Contrôleur d'authentification
+ */
 
 public class AdminController {
 	private Administrateur admin;
@@ -21,12 +27,8 @@ public class AdminController {
 	private Formulaire fo;
 	private ConnexionBDD c;
 	
-	/**
-	 * @author FRANC Pierre, GIBASSIER Romain
-	 * @version 1.0
-	 * 
-	 * Contrôleur d'authentification
-	 */
+	
+	
 	public AdminController(Formulaire fo, JPanel content, CardLayout cl, String[] listContent) {
 		this.cl = cl;
 		this.content = content;

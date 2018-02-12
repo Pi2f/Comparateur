@@ -42,7 +42,7 @@ public class Utilisateur extends JPanel {
 		title.setLayout(new FlowLayout());
 		title.setBackground(new Color(196, 215, 237));
 		JLabel[] jl= new JLabel[10];
-		String[] s = {"Nom", "Marque", "Pays", "Type de Fermentation", "Couleur", "Degré", "Prix", "Amertume", "Douceur", "Score"};
+		String[] s = {"Nom", "Marque", "Pays", "Type de Fermentation", "Couleur", "Degré", "Prix", "Amertume", "Douceur", "% de pertinence"};
 		
 		for(int i = 0; i < 10; i++) {
 			jl[i] = new JLabel(s[i]);
@@ -82,7 +82,7 @@ public class Utilisateur extends JPanel {
                 	JPanel j1 = new JPanel();
                 	JButton res = new JButton("Réserver");
                 	res.setFont(new Font("Dialog",Font.BOLD,14));
-                	res.addActionListener(new Reservation());
+                	res.addActionListener(new Reservation(jlb.getSelectedValue()));
                 	res.setPreferredSize(new Dimension(100,30));
                 	j1.add(res);
                 	j1.setBackground(new Color(196, 215, 237));

@@ -90,7 +90,7 @@ public Fenetre(String title, int left, int top, int width, int height){
 	/**
 	 * Début de l'application
 	 */
-	public static void main() {
+	public static void main(String[] args) {
 		new Fenetre("BeerComparator", 0, 0, MAXIMIZED_HORIZ, MAXIMIZED_VERT);
 	}
 }

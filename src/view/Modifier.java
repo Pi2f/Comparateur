@@ -12,8 +12,8 @@ import javax.swing.JLabel;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
 
+import controller.ConnexionBDD;
 import model.Biere;
-import model.ConnexionBDD;
 
 /**
  * @author FRANC Pierre, GIBASSIER Romain
@@ -130,8 +130,10 @@ public class Modifier extends JPanel {
 			
 			@Override
 			public void actionPerformed(ActionEvent e) {
+				c = new ConnexionBDD();
 				try {
 					c.supprimer((String) lmodifier.getSelectedItem());
+					c.terminer();
 				} catch (SQLException e1) {
 					e1.printStackTrace();
 				}

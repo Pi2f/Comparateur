@@ -1,4 +1,4 @@
-package model;
+package controller;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
@@ -11,6 +11,10 @@ import java.util.ArrayList;
 import javax.swing.JSlider;
 
 import com.visutools.nav.bislider.BiSlider;
+
+import model.Biere;
+import model.Requete;
+import model.Score;
 
 public class ConnexionBDD {
 	private Connection conn;
